@@ -1,0 +1,8 @@
+import pandas as pd
+import numpy as np
+import matplotlib as plt
+%matplotlib inline
+
+testdata = pd.read_csv("C:/Users/JACKSON/Documents/Python Scripts\DataSets/Sample.csv")
+
+testdata.apply(lambda x: sum(x.isnull()),axis=0)
