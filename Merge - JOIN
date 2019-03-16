@@ -1,0 +1,7 @@
+import pandas as pd
+import numpy as np
+
+left = pd.DataFrame({'Key' : ['foo', 'bar'], 'lval': [1,2]})
+right = pd.DataFrame({'Key' : ['foo', 'bar','bar'], 'lval': [3,4,5]})
+
+pd.merge(left, right, on = 'Key')
