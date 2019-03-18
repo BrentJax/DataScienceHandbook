@@ -1,0 +1,48 @@
+import sklearn
+
+#import models from scikit learn module: 
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import KFold
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.tree import DecisionTreeClassifier, export_graphviz
+from sklearn import metrics
+
+
+import pandas as pd
+import numpy as np
+
+df = pd.read_csv("C:/Users/JACKSON\Documents/Python Scripts/DataSets/loanP_train_DS_PY.csv")
+
+
+# Extracting only the independent variables
+X = df.iloc[:, [8,10]].values
+
+# Extracting only the dependent variables
+y = df.iloc[:, 12].values #Loan Status 
+
+#Splitting the dataset into the Training set and Test set
+
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.25, random_state = 0)
+
+
+#Logistic Regression - Binary result
+
+#Fitting Logistics regression to training dataset
+from sklearn.linear_model import LogisticRegression
+classifier = LogisticRegression(random_state = 0)
+
+classifier.fit(X_train, y_train)
+
+LogisticRegression(C=1.0, class_weight=None, dual=False, fit_intercept =True, 
+intercept_scaling=1, max_iter=100, multi_class='ovr', n_jobs=1, 
+penalty='12', random_state=0, solver='liblinear', tol=0.0001, verbose=0, warm_start=False)
+
+#Identify the predictions
+y_pred = classifier.predict(X_test)
+y_pred
+
+# building the Confusion Matrix
+from sklearn.metrics import confusion_matrix
+cm = confusion_matrix(y_test, y_pred)
+cm
