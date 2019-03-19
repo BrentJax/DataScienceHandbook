@@ -1,0 +1,16 @@
+import pandas as pd
+import numpy as np
+import matplotlib as plt
+%matplotlib inline
+
+df = pd.read_csv("C:/Users/brent.jackson/Documents/Python Scripts/loanP_train_DS_PY.csv")
+
+#Identify records with missing values
+df.apply(lambda x: sum(x.isnull()),axis=0)
+
+#Replace missing values with the mean
+df['Loan_Amount_Term'].fillna(df['Loan_Amount_Term'].mean(), inplace=True)
+df['Credit_History'].fillna(df['Credit_History'].mean(), inplace=True) #filling missing values
+
+#Identify records with missing values after replacing them with the mean
+df.apply(lambda x: sum(x.isnull()),axis=0)
